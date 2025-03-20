@@ -2,8 +2,11 @@ package com.generation.crudfarmacia.model;
 
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,9 +21,9 @@ public class Categoria {
     private Long id;    
     private String nome;
     
-    @JsonIgnore
-    @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)    
-    private List<Produto> produtos;
+    @OneToMany(fetch=FetchType.LAZY, mappedBy = "categoria",cascade = CascadeType.REMOVE) 
+    @JsonIgnoreProperties("categoria")
+   private List<Produto> produtos;
    
     public List<Produto> getProdutos() {
         return produtos;

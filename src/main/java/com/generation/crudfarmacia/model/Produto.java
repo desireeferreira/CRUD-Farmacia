@@ -1,9 +1,11 @@
 package com.generation.crudfarmacia.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -13,12 +15,16 @@ public class Produto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
     private Long id;
     private String nome;
     private String descricao;
     private float preco;
     private int estoque;
        
+    @ManyToOne// classe postagem muitos: classe tema um
+	@JsonIgnoreProperties("produto") //
+	private Categoria categoria;// adicionando o objeto tema (id, descrição)
         
 	public Produto(Long id, String nome, String descricao, float preco, int estoque) {		
 		this.id = id;
