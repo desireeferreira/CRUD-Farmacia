@@ -25,13 +25,17 @@ public class Produto {
     @ManyToOne// classe postagem muitos: classe tema um
 	@JsonIgnoreProperties("produto") //
 	private Categoria categoria;// adicionando o objeto tema (id, descrição)
+    
+    public Produto () {
+    }
         
-	public Produto(Long id, String nome, String descricao, float preco, int estoque) {		
+	public Produto(Long id, String nome, String descricao, float preco, int estoque, Categoria categoria) {		
 		this.id = id;
 		this.nome = nome;
 		this.descricao = descricao;
 		this.preco = preco;
 		this.estoque = estoque;
+		this.categoria = categoria;
 	}
 	public Long getId() {
 		return id;
@@ -63,8 +67,12 @@ public class Produto {
 	public void setEstoque(int estoque) {
 		this.estoque = estoque;
 	}
-	public Produto getCategoria() {
-		// TODO Auto-generated method stub
-		return null;
+	public Categoria getCategoria() {
+		return categoria;
+		}
+		
+		public void setCategoria(Categoria categoria) {
+			this.categoria = categoria;
+		}
 	}
-    }
+
