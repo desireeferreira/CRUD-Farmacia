@@ -63,4 +63,8 @@ public class Produto {
 	public void setEstoque(int estoque) {
 		this.estoque = estoque;
 	}
+	public Produto getCategoria() {
+		// TODO Auto-generated method stub
+		return null;
+	}
     }
